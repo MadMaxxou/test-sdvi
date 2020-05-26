@@ -24,7 +24,7 @@ class IngredientPizza
     private $id;
 
     /**
-     * La quanité de l'ingrédient en gramme
+     * La quantité de l'ingrédient en gramme
      * @var int
      * @ORM\Column(name="quantite", type="integer")
      */
@@ -39,6 +39,16 @@ class IngredientPizza
      * )
      */
     private $ingredient;
+
+    /**
+     * @var Pizza
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pizza" , inversedBy="quantiteIngredients")
+     * @ORM\JoinColumn(
+     *     name="pizza_id",
+     *     referencedColumnName="id_pizza"
+     * )
+     */
+    private $pizza;
 
     /**
      * @param float $grammes
@@ -102,6 +112,25 @@ class IngredientPizza
     public function setIngredient(Ingredient $ingredient): IngredientPizza
     {
         $this->ingredient = $ingredient;
+
+        return $this;
+    }
+
+    /**
+     * @return Pizza
+     */
+    public function getPizza(): ?Pizza
+    {
+        return $this->pizza;
+    }
+
+    /**
+     * @param Pizza $pizza
+     * @return Pizza
+     */
+    public function setPizza(Pizza $pizza): Pizza
+    {
+        $this->ingredient = $pizza;
 
         return $this;
     }

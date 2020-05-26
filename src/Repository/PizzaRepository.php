@@ -29,6 +29,7 @@ class PizzaRepository extends ServiceEntityRepository
      */
     public function findPizzaAvecDetailComplet($pizzaId): Pizza
     {
+        dump($pizzaId);
         // test si l'id de la pizza est bien un nombre supérieur à 0
         if (!is_numeric($pizzaId) || $pizzaId <= 0) {
             throw new \Exception("Impossible de d'obtenir le détail de la pizza ({$pizzaId}).");
@@ -47,6 +48,6 @@ class PizzaRepository extends ServiceEntityRepository
         ;
 
         // exécution de la requête
-        return $qb->getQuery()->getSingleResult();
+        return $qb->getQuery()->getOneOrNullResult();
     }
 }
