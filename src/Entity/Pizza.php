@@ -29,9 +29,15 @@ class Pizza
     private $nom;
 
     /**
-     * @var Collection
+     * @var IngredientPizza
+     * @ORM\OneToMany(targetEntity="App\Entity\IngredientPizza", mappedBy="quantite")
+     * @ORM\JoinColumn(
+     *     name="ingredientPizza_id",
+     *     referencedColumnName="id_ingredientPizza"
+     * )
      */
     private $quantiteIngredients;
+
 
     /**
      * Constructor
@@ -39,6 +45,7 @@ class Pizza
     public function __construct()
     {
         $this->quantiteIngredients = new ArrayCollection();
+        $this->pizzerias = new ArrayCollection();
     }
 
     /**
@@ -99,10 +106,11 @@ class Pizza
     }
 
     /**
-     * @return Collection
+     * @return IngredientPizza
      */
-    public function getQuantiteIngredients(): Collection
+    public function getQuantiteIngredients(): IngredientPizza
     {
         return $this->quantiteIngredients;
     }
+
 }
