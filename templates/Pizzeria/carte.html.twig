@@ -1,1 +1,22 @@
 
+{% extends "base.html.twig" %}
+{% block title %}Les pizzas{% endblock %}
+{% block titrePage %}{{ nom }}{% endblock %}
+
+{% block body %}
+        <div class="container-fluid">
+            <table>
+                <tr>
+                    <th>Pizza</th>
+                    <th>Prix</th>
+                    <th></th>
+                </tr>
+                {% for pizza, prix in prix %}
+                    <tr>
+                        <td>{{pizza }}</td>
+                        <td>{{ prix }} €</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}

@@ -2,42 +2,87 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+
     <title>{% block title %}Test des pizzeria{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    {% endblock %}
+
     <script src="https://use.fontawesome.com/7e065ddf26.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Exo|Indie+Flower" rel="stylesheet">
     {{ encore_entry_link_tags('app') }}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 </head>
 <body>
-<header class="container">
+<header class="container-fluid">
     <h1><span class="tp-ita-1">Les pizzé</span><span class="tp-ita-2">rias de no</span><span class="tp-ita-3">s régions</span></h1>
-    <nav>
-        <a href="{{ path("app_index_index") }}" class="tp-icone-blk">
-            <i class="fa fa-home" aria-hidden="true"></i>
-            <span>Menu</span>
-        </a>
-        <a href="{{ path("app_pizzeria_liste") }}" class="tp-icone-blk">
-            <i class="fa fa-list" aria-hidden="true"></i>
-            <span>Pizzérias</span>
-        </a>
-        <a href="{{ path("app_pizzaiolo_disponibles") }}" class="tp-icone-blk">
-            <i class="fa fa-users" aria-hidden="true"></i>
-            <span>Pizzaïolos</span>
-        </a>
-        <a href="{{ path("app_pizza_liste") }}" class="tp-icone-blk">
-            <i class="fa fa-cutlery" aria-hidden="true"></i>
-            <span>Pizzas</span>
-        </a>
+
+    <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle btn-lg pull-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path("app_index_index") }}" class="tp-icone-blk">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Menu</span>
+                        </a></li>
+                    <li><a href="{{ path("app_pizzeria_liste") }}" class="tp-icone-blk">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            <span>Pizzérias</span>
+                        </a></li>
+                    <li><a href="{{ path("app_pizzaiolo_disponibles") }}" class="tp-icone-blk">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <span>Pizzaïolos</span>
+                        </a></li>
+                    <li><a href="{{ path("app_pizza_liste") }}" class="tp-icone-blk">
+                            <i class="fa fa-cutlery" aria-hidden="true"></i>
+                            <span>Pizzas</span>
+                        </a></li>
+                    {% if not is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path("login") }}" class="tp-icone-blk">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                <span>Se connecter</span>
+                            </a></li>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path("app_admin") }}" class="tp-icone-blk">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span>Admin</span>
+                            </a></li>
+                        <li><a href="{{ path("logout") }}" class="tp-icone-blk">
+                                <i class="fa fa-power-off" aria-hidden="true"></i>
+                                <span>Se déconnecter</span>
+                            </a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+
     </nav>
 </header>
-<div class="container tp-main">
-    <h2>{% block titrePage %}{% endblock %}</h2>
+<div class="container-fluid tp-main">
 
-    <div class="tp-main-body">
-        {% block body %}{% endblock %}
-    </div>
+        <h2>{% block titrePage %}{% endblock %}</h2>
+
+        <div class=" container-fluid tp-main-body">
+            {% block body %}{% endblock %}
+        </div>
+
 </div>
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+{% endblock %}
 </body>
 </html>

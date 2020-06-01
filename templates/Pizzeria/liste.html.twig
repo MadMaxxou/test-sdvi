@@ -7,25 +7,28 @@
 {% endblock %}
 
 {% block body %}
-    <table>
-        <tr>
-            <th>Nom de la pizzéria</th>
-            <th>Téléphone</th>
-            <th></th>
-        </tr>
-        {% for pizzeria in pizzerias %}
+    <div class="container-fluid">
+        <table>
             <tr>
-                <td>{{ pizzeria.nom }}</td>
-                <td>
-                    <i class="fa fa-phone" aria-hidden="true"></i>
-                    {{ pizzeria.numTelephone }}
-                </td>
-                <td>
-                    <a href="{{ path("app_pizzeria_detail", {"pizzeriaId":pizzeria.id}) }}">
-                        <i class="fa fa-caret-square-o-right tp-link" aria-hidden="true"></i>
-                    </a>
-                </td>
+                <th>Nom de la pizzéria</th>
+                <th>Téléphone</th>
+                <th></th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for pizzeria in pizzerias %}
+                <tr>
+                    <td>{{ pizzeria.nom }}</td>
+                    <td>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        {{ pizzeria.numTelephone }}
+                    </td>
+                    <td>
+                        <a href="{{ path("app_pizzeria_detail", {"pizzeriaId":pizzeria.id}) }}">
+                            <i class="fa fa-caret-square-o-right tp-link" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
 {% endblock %}

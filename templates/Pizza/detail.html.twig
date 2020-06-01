@@ -2,10 +2,10 @@
 
 {% block title %}{% endblock %}
 
-{% block titrePage %}{% endblock %}
+{% block titrePage %}{{ nom }}{% endblock %}
 
 {% block body %}
-    Le détail de la pizza sélectionnée
-
+    <a>prix de fabrication : {{ prix }} € </a>
+    <a>Ingrédients : {{ ingredient }} </a>
 
 {% endblock %}

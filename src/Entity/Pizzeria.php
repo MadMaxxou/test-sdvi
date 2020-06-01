@@ -53,11 +53,11 @@ class Pizzeria
 
     /**
      * @var Collection
-     * @ORM\ManyToMany(targetEntity="Pizza")
-     * @ORM\JoinTable(name="pizza_pizzeria",
-     *      joinColumns={@ORM\JoinColumn(name="pizzeria_id", referencedColumnName="id_pizzeria")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="pizza_id", referencedColumnName="id_pizza")}
-     *      )
+     * @ORM\ManyToMany(targetEntity="App\Entity\Pizza")
+     * @ORM\JoinTable(name="pizzerias_pizzas",
+     *     joinColumns={@ORM\JoinColumn(name="pizzeria_id", referencedColumnName="id_pizzeria")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="pizza_id", referencedColumnName="id_pizza")}
+     *     )
      */
     private $pizzas;
 
